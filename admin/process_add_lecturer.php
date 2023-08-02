@@ -22,15 +22,14 @@
         $i = $_POST['status'];
         $j = $_POST['cp1'];
         $k = $_POST['address1'];
-        $l = $_POST['school'];
-        $m = $_POST['year_graduated'];
-        $n = $_POST['educ_attainment'];
         $p = $_POST['rate'];
         $q = $_POST['branch'];
 
         if (in_array($end, $allowed_ext)) {
             if (move_uploaded_file($image_temp, $path)) {
-                mysqli_query($conn, "INSERT INTO `es_lecturers` (column1, column2, column3, ..., column19) VALUES ('$a', '$b', '$c', '$d', '$e', ..., '$q', 'ACTIVE')");
+                mysqli_query($conn, "INSERT INTO your_table_name (lecturer_id, firstname, middle_name, lastname, suffix, birthday, age, sex, marital_status, contact_number, address, rate_per_hour, branch, status)
+VALUES ('$a', '$b', '$c', '$d', '$e', '$f', '$g', '$h', '$i', '$j', '$k', '$p', '$q', 'ACTIVE');
+");
 
                 mysqli_query($conn, "INSERT INTO `es_users` VALUES('', '$b', '$c', '$d', '$e', '$b', '$d', '$path', 'LECTURER', '$q', 'ACTIVE')");
 
