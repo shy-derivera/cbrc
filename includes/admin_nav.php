@@ -14,9 +14,9 @@
 						<div class="menu-title">Students</div>
 					</a>
 					<ul>
-						<li> <a href="student_list.php"><i class="bx bx-right-arrow-alt"></i>List of Enrolled Students</a>
+						<li> <a href="student_list.php"><i class="bx bx-right-arrow-alt"></i>List of New Enrolled Students</a>
 						</li>
-						<li> <a href="unverified_student_list.php"><i class="bx bx-right-arrow-alt"></i>List of New/Not Veried Students</a>
+						<li> <a href="unverified_student_list.php"><i class="bx bx-right-arrow-alt"></i>List of Veried Students</a>
 						</li>
 						<li> <a href="dropped_student_list.php"><i class="bx bx-right-arrow-alt"></i>List of Dropped Students</a>
 						</li>
