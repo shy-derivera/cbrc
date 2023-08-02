@@ -67,10 +67,19 @@
 				<hr/>
 				
 				<div class="form-body">
+					<?php
+					include('connection.php');
+
+					$query=mysqli_query($conn,"SELECT * FROM `es_lecturers`");
+					while($row=mysqli_fetch_array($query)){
+						$number = $row['lecturer_id'];
+						$series = $number + 1;
+					}
+												?>
 										<form method="POST" action="process_add_lecturer.php" enctype="multipart/form-data" class="row g-3">
 										  <div class="col-sm-2">
 												<label for="" class="form-label">Lecturer ID</label>
-												<input type="text" name="lecturer_id" class="form-control" placeholder="Lecturer ID" required>
+												<input type="text" name="lecturer_id" class="form-control" placeholder="Lecturer ID" viewonly value=<?php echo $series;?>>
 											</div>
 											<div class="col-sm-3">
 												<label for="" class="form-label">First Name</label>
