@@ -90,7 +90,7 @@
 									<?php include('connection.php');
 									$query=mysqli_query($conn,"SELECT *
 									FROM `es_students`
-									WHERE id NOT IN (SELECT id FROM `es_archive_students`)
+									WHERE id NOT IN (SELECT id FROM `es_archive_students`) AND status ='UNVERIFIED'
 									");
 
 									while($row=mysqli_fetch_array($query)){
