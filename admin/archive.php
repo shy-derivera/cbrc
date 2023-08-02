@@ -6,6 +6,18 @@
 
 	$query = mysqli_query($conn, $sql);
 
+	$sql1 = "SELECT *
+   			FROM es_lecturers
+   			JOIN es_archive_lecturers ON es_lecturers.id = es_archive_lecturers.id";
+
+	$query1 = mysqli_query($conn, $sql1);
+
+	$sql3 = "SELECT *
+   			FROM es_announcement
+   			JOIN es_archive_announcement ON es_announcement.id = es_archive_announcement.id";
+
+	$query3 = mysqli_query($conn, $sql3);
+
 
    
 ?>
@@ -110,9 +122,6 @@
 								</div>
 							</div>
 						</div>
-						<div class="tab-pane fade" id="nav-lecturer" role="tabpanel" aria-labelledby="nav-lecturer-tab" tabindex="0">...</div>
-						<div class="tab-pane fade" id="nav-branch" role="tabpanel" aria-labelledby="nav-branch-tab" tabindex="0">...</div>
-						<div class="tab-pane fade" id="nav-announcements" role="tabpanel" aria-labelledby="nav-announcements-tab" tabindex="0">...</div>
 					</div>
 				</div>
 
@@ -126,19 +135,19 @@
 										<thead>
 											<tr>
 												<th>ID no.</th>
-												<th>Student Name</th>
+												<th>Lecturer Name</th>
 						                        <th>School Branch</th>
 												<th colspan="2" style="text-align:center;">Option</th>
 											</tr>
 										</thead>
 										<tbody>
-							                <?php while ($row = mysqli_fetch_assoc($query)) { ?>
+							                <?php while ($row1 = mysqli_fetch_assoc($query1)) { ?>
 						                    <tr>
-						                        <td><?php echo $row['id']; ?></td>
-						                        <td><?php echo $row['firstname']." ".$row['lastname']; ?></td>
-						                        <td><?php echo $row["school_branch"]?></td>
-						                        <td style="text-align:center;"><a href="stud_restore.php?id=<?php echo $row['id'] ; ?> " class="btn btn-inverse-warning btn-fw" style="color:green"><i class="bx bx-zoom-in"></i>Restore</a> </td>
-						                        <td style="text-align:center;"><a href="stud_delete.php?id=<?php echo $row['id']; ?>" class="btn btn-inverse-danger btn-fw" style="color:red"><i class="bx bx-trash"></i>ARCHIEVE</a></td>
+						                        <td><?php echo $row1['lecturer_id']; ?></td>
+						                        <td><?php echo $row1['firstname']." ".$row1['lastname']; ?></td>
+						                        <td><?php echo $row1["branch"]?></td>
+						                        <td style="text-align:center;"><a href="lecturer_restore.php?id=<?php echo $row['id'] ; ?> " class="btn btn-inverse-warning btn-fw" style="color:green"><i class="bx bx-zoom-in"></i>Restore</a> </td>
+						                        <td style="text-align:center;"><a href="lecturer_delete.php?id=<?php echo $row['id']; ?>" class="btn btn-inverse-danger btn-fw" style="color:red"><i class="bx bx-trash"></i>ARCHIEVE</a></td>
 						                    </tr>
 							                <?php } ?>
 										</tbody>
@@ -146,9 +155,6 @@
 								</div>
 							</div>
 						</div>
-						<div class="tab-pane fade" id="nav-student" role="tabpanel" aria-labelledby="nav-student-tab" tabindex="0">...</div>
-						<div class="tab-pane fade" id="nav-branch" role="tabpanel" aria-labelledby="nav-branch-tab" tabindex="0">...</div>
-						<div class="tab-pane fade" id="nav-announcements" role="tabpanel" aria-labelledby="nav-announcements-tab" tabindex="0">...</div>
 					</div>
 				</div>
 
@@ -182,9 +188,6 @@
 								</div>
 							</div>
 						</div>
-						<div class="tab-pane fade" id="nav-student" role="tabpanel" aria-labelledby="nav-student-tab" tabindex="0">...</div>
-						<div class="tab-pane fade" id="nav-lecturer" role="tabpanel" aria-labelledby="nav-lecturer-tab" tabindex="0">...</div>
-						<div class="tab-pane fade" id="nav-announcements" role="tabpanel" aria-labelledby="nav-announcements-tab" tabindex="0">...</div>
 					</div>
 				</div>
 
@@ -197,20 +200,20 @@
 									<table id="example" class="table table-striped table-bordered" style="width:100%">
 										<thead>
 											<tr>
-												<th>ID no.</th>
-												<th>Student Name</th>
-						                        <th>School Branch</th>
+												<th>Title</th>
+												<th>Body</th>
+						                        <th>Group</th>
 												<th colspan="2" style="text-align:center;">Option</th>
 											</tr>
 										</thead>
 										<tbody>
-							                <?php while ($row = mysqli_fetch_assoc($query)) { ?>
+							                <?php while ($row3 = mysqli_fetch_assoc($query3)) { ?>
 						                    <tr>
-						                        <td><?php echo $row['id']; ?></td>
-						                        <td><?php echo $row['firstname']." ".$row['lastname']; ?></td>
-						                        <td><?php echo $row["school_branch"]?></td>
-						                        <td style="text-align:center;"><a href="stud_restore.php?id=<?php echo $row['id'] ; ?> " class="btn btn-inverse-warning btn-fw" style="color:green"><i class="bx bx-zoom-in"></i>Restore</a> </td>
-						                        <td style="text-align:center;"><a href="stud_delete.php?id=<?php echo $row['id']; ?>" class="btn btn-inverse-danger btn-fw" style="color:red"><i class="bx bx-trash"></i>ARCHIEVE</a></td>
+						                        <td><?php echo $row3['title']; ?></td>
+						                        <td><?php echo $row3['body']; ?></td>
+						                        <td><?php echo $row3["view_group"]?></td>
+						                        <td style="text-align:center;"><a href="announcement_restore.php?id=<?php echo $row['id'] ; ?> " class="btn btn-inverse-warning btn-fw" style="color:green"><i class="bx bx-zoom-in"></i>Restore</a> </td>
+						                        <td style="text-align:center;"><a href="announcement_delete.php?id=<?php echo $row['id']; ?>" class="btn btn-inverse-danger btn-fw" style="color:red"><i class="bx bx-trash"></i>ARCHIEVE</a></td>
 						                    </tr>
 							                <?php } ?>
 										</tbody>
@@ -218,9 +221,6 @@
 								</div>
 							</div>
 						</div>
-						<div class="tab-pane fade" id="nav-student" role="tabpanel" aria-labelledby="nav-student-tab" tabindex="0">...</div>
-						<div class="tab-pane fade" id="nav-branch" role="tabpanel" aria-labelledby="nav-branch-tab" tabindex="0">...</div>
-						<div class="tab-pane fade" id="nav-announcements" role="tabpanel" aria-labelledby="nav-announcements-tab" tabindex="0">...</div>
 					</div>
 				</div>
 
