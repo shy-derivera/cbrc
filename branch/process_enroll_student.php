@@ -12,37 +12,40 @@
 		$path = "../admin/upload/".$name;
 		$allowed_ext = array("gif", "jpg", "jpeg", "png");
 
-    $a = $_POST['student_number'];
-		$b = $_POST['fn'];
-    $c = $_POST['mn'];
-		$d = $_POST['ln'];
-    $e = $_POST['suffix'];
-	$name = $d . ', ' . $b . ' ' . $c . ' ' . $e;
-		$f = $_POST['bday'];
-    $g = $_POST['age'];
-		$h = $_POST['gender'];
-    $i = $_POST['mstatus'];
-		$j = $_POST['cp1'];
-    $k = $_POST['address1'];
-		$l = $_POST['school'];
-    $m = $_POST['year_graduated'];
-		$n = $_POST['review_center'];
-    $o = $_POST['times_taken'];
-		$p = $_POST['contact_person'];
-    $q = $_POST['relationship'];
-		$r = $_POST['cp2'];
-    $s = $_POST['username'];
-		$t = $_POST['password'];
-		$u = $_POST['location'];
-		$v = $_POST['branch'];
+    		$stud_number = $_POST['student_number'];
+		$fn = $_POST['fn'];
+    		$mn = $_POST['mn'];
+		$ln = $_POST['ln'];
+    		$suffix = $_POST['suffix'];
+		$name = $d . ', ' . $b . ' ' . $c . ' ' . $e;
+		$bday = $_POST['bday'];
+    		$age = $_POST['age'];
+		$gender = $_POST['gender'];
+    		$mstatus = $_POST['mstatus'];
+		$cp = $_POST['cp1'];
+    		$address = $_POST['address1'];
+		$school = $_POST['school'];
+    		$yg = $_POST['year_graduated'];
+		$rc = $_POST['review_center'];
+    		$tt = $_POST['times_taken'];
+		$contact_p = $_POST['contact_person'];
+    		$relationship = $_POST['relationship'];
+		$cp1 = $_POST['cp2'];
+    		$username = $_POST['username'];
+		$password = $_POST['password'];
+		$location = $_POST['location'];
+		$branch = $_POST['branch'];
 		$date = date('m-d-Y');
 
 		if(in_array($end, $allowed_ext)){
 			if(move_uploaded_file($image_temp, $path)){
-				mysqli_query($conn, "INSERT INTO `es_students` VALUES('', '$a', '$b', '$c', '$d', '$e', '$path', '$j', '$k', '$l', '$m', '$n', '$o', '$h', '$g','$f','$i', '$p',
-        '$q','$r', '$u', '$v', 'AGREE', '$date')") or die(mysqli_error());
 
-				mysqli_query($conn, "INSERT INTO `es_users` VALUES('', '$b', '$c', '$d', '$e', '$s', '$t', '$path', 'STUDENT', '$v', 'ACTIVE')") or die(mysqli_error());
+
+				mysqli_query($conn, "INSERT INTO es_students (student_number, firstname, middle_name, lastname, suffix, photo, cp_number, address, school, year_graduated, prev_rev_center, no_of_times_taken, sex, age, birthday, marital_status, name_to_contact, relationship, cp_number_of_cp, school_location, school_branch, terms_condition, status, enrolled_date)
+		VALUES ('$stud_number', '$fn', '$mn', '$ln', '$suffix', '$path', '$cp', '$address', '$school', '$yg', '$rc', '$tt', '$gender', '$age', '$bday', '$mstatus', '$contact_p', '$relationship', '$cp1', '$location', '$branch', 'AGREE', 'active', '$date');") or die(mysqli_error());
+
+				mysqli_query($conn, "INSERT INTO `es_users`(`user_firstname`, `user_mn`, `user_lastname`, `user_suffix`, `user_username`, `user_password`, `user_photo`, `user_account_type`, `user_branch`, `user_status`) 
+		VALUES ('$fn','$mn','$ln','$suffix','$username','$password','$path','STUDENT','$branch','ACTIVE')");
 
 				echo "<script>alert('Student has been successfully enrolled.')</script>";
 				header("location: payment.php?stud_number=$a & stud_name= $name & branch= $v");
